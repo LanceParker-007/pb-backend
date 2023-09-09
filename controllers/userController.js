@@ -22,17 +22,18 @@ export const register = asyncHandler(async (req, res) => {
     }
 
     //Create a new user
-    const user = new User({
+    const user = new User.create({
       username,
       score: 0,
     });
 
     if (user) {
-      user.save();
+      await user.save();
+      console.log(here);
 
       res.status(201).json({
         _id: user._id,
-        name: user.name,
+        username: user.username,
         token: generateToken(user._id),
       });
     }
