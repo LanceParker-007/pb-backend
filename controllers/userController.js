@@ -13,24 +13,22 @@ export const register = asyncHandler(async (req, res) => {
 
   try {
     //Check is user already registered
-    const userExists = await User.findOne({ username });
+    const userExists = await User.findOne({ username: username });
     if (userExists) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Username already taken",
       });
     }
 
     //Create a new user
-    const user = new User.create({
+    const user = await User.create({
       username,
       score: 0,
     });
 
     if (user) {
       await user.save();
-      console.log(here);
-
       res.status(201).json({
         _id: user._id,
         username: user.username,
@@ -38,6 +36,7 @@ export const register = asyncHandler(async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: "Error creating user",
