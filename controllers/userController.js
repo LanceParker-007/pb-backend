@@ -90,3 +90,12 @@ export const setScore = asyncHandler(async (req, res) => {
     });
   }
 });
+
+export const getScore = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ _id: req.user._id });
+
+  return res.status(200).json({
+    success: true,
+    score: user.score ? user.score : 0,
+  });
+});
