@@ -8,6 +8,6 @@ userRouter.route("/register").post(register);
 
 userRouter.route("/setscore").post(protect, setScore);
 
-userRouter.route("/getscore").post(protect, getScore);
+userRouter.route("/getscore").get(protect, getScore);
 
 export default userRouter;
