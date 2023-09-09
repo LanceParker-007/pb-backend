@@ -26,6 +26,7 @@ export const register = asyncHandler(async (req, res) => {
       name,
       email: email ? email : null,
       mobilenumber,
+      score: 0,
     });
 
     if (user) {
@@ -48,12 +49,12 @@ export const register = asyncHandler(async (req, res) => {
 //Set score
 export const setScore = asyncHandler(async (req, res) => {
   //Check if times up or not
-  if (new Date().toDateString() !== "Tue Sep 10 2023") {
-    return res.status(200).json({
-      success: true,
-      message: `Times Up`,
-    });
-  }
+  // if (new Date().toDateString() !== "Tue Sep 10 2023") {
+  //   return res.status(200).json({
+  //     success: true,
+  //     message: `Times Up`,
+  //   });
+  // }
 
   const { currentScore } = req.body;
 
@@ -92,10 +93,11 @@ export const setScore = asyncHandler(async (req, res) => {
 });
 
 export const getScore = asyncHandler(async (req, res) => {
+  console.log("here");
   const user = await User.findOne({ _id: req.user._id });
-
+  console.log(user);
   return res.status(200).json({
     success: true,
-    score: user.score ? user.score : 0,
+    highscore: user.score,
   });
 });
