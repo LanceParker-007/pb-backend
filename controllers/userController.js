@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/user.js";
 import generateToken from "../utils/generateToken.js";
-import { isSameDay } from "date-fns";
+// import { isSameDay } from "date-fns";
 
 //Register user
 export const register = asyncHandler(async (req, res) => {
@@ -48,14 +48,14 @@ export const register = asyncHandler(async (req, res) => {
 //Set score
 export const setScore = asyncHandler(async (req, res) => {
   //Check if times up or not
-  const targetDate = new Date(2023, 8, 10);
-  const currentDate = new Date();
-  if (!isSameDay(currentDate, targetDate)) {
-    return res.status(200).json({
-      success: true,
-      message: `Times Up`,
-    });
-  }
+  // const targetDate = new Date(2023, 8, 10);
+  // const currentDate = new Date();
+  // if (!isSameDay(currentDate, targetDate)) {
+  //   return res.status(200).json({
+  //     success: true,
+  //     message: `Times Up`,
+  //   });
+  // }
 
   const { currentScore } = req.body;
 
