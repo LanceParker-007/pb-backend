@@ -49,12 +49,12 @@ export const register = asyncHandler(async (req, res) => {
 //Set score
 export const setScore = asyncHandler(async (req, res) => {
   //Check if times up or not
-  // if (new Date().toDateString() !== "Tue Sep 10 2023") {
-  //   return res.status(200).json({
-  //     success: true,
-  //     message: `Times Up`,
-  //   });
-  // }
+  if (new Date().toDateString() !== "Tue Sep 10 2023") {
+    return res.status(200).json({
+      success: true,
+      message: `Times Up`,
+    });
+  }
 
   const { currentScore } = req.body;
 
