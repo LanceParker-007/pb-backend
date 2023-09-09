@@ -47,7 +47,7 @@ export const register = asyncHandler(async (req, res) => {
 //Set score
 export const setScore = asyncHandler(async (req, res) => {
   //Check if times up or not
-  if (new Date().toDateString() !== "Tue Sep 10 2023") {
+  if (new Date().toDateString() !== "Sun Sep 10 2023") {
     return res.status(200).json({
       success: true,
       message: `Times Up`,
