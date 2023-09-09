@@ -4,28 +4,26 @@ import generateToken from "../utils/generateToken.js";
 
 //Register user
 export const register = asyncHandler(async (req, res) => {
-  const { name, email, mobilenumber } = req.body;
+  const { username } = req.body;
 
-  if (!name || !mobilenumber) {
+  if (!username) {
     res.status(400);
     throw new Error("Please enter all required fields");
   }
 
   try {
     //Check is user already registered
-    const userExists = await User.findOne({ mobilenumber });
+    const userExists = await User.findOne({ username });
     if (userExists) {
       res.status(400).json({
         success: false,
-        message: "User already registered",
+        message: "Username already taken",
       });
     }
 
     //Create a new user
     const user = new User({
-      name,
-      email: email ? email : null,
-      mobilenumber,
+      username,
       score: 0,
     });
 
