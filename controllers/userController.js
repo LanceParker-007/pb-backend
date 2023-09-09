@@ -93,9 +93,8 @@ export const setScore = asyncHandler(async (req, res) => {
 });
 
 export const getScore = asyncHandler(async (req, res) => {
-  console.log("here");
   const user = await User.findOne({ _id: req.user._id });
-  console.log(user);
+
   return res.status(200).json({
     success: true,
     highscore: user.score,
