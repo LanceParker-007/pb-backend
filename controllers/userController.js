@@ -57,7 +57,6 @@ export const setScore = asyncHandler(async (req, res) => {
   const { currentScore } = req.body;
 
   const user = await User.findOne({ _id: req.user._id });
-
   try {
     if (!user.score) {
       user.score = currentScore;
